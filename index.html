@@ -177,6 +177,7 @@
                 document.getElementById('guessInput').focus();
             } catch (error) {
                 console.error('Error starting new game:', error);
+                document.getElementById('message').textContent = 'Error starting new game. Make sure the server is running.';
             }
         }
 
@@ -218,10 +219,13 @@
                 }
                 
                 guessInput.value = '';
-                guessInput.focus();
+                if (gameActive) {
+                    guessInput.focus();
+                }
                 
             } catch (error) {
                 console.error('Error making guess:', error);
+                document.getElementById('message').textContent = 'Error making guess. Check your connection.';
             }
         }
 
@@ -230,6 +234,11 @@
             if (e.key === 'Enter') {
                 makeGuess();
             }
+        });
+
+        // Initialize the game interface
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Number Guessing Game loaded!');
         });
     </script>
 </body>
